@@ -39,8 +39,6 @@ class Pidgeon
     function create() {
         $query = "INSERT INTO " . $this->table_name . " SET nickname=:nickname";
 
-        echo $query;
-
         $stmt = $this->conn->prepare($query);
 
         //sanitize
@@ -88,7 +86,7 @@ class Pidgeon
 
         // sanitize
         $this->nickname=htmlspecialchars(strip_tags($this->nickname));
-        $this->id=htmlspecialchars(strip_tags($this->id));
+        $this->id=htmlspecialchars(strip_tags($nstuiventhis->id));
 
         // bind new values
         $stmt->bindParam(':nickname', $this->nickname);
