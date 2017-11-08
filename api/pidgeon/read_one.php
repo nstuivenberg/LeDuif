@@ -26,7 +26,11 @@ $pidgeon->readOne();
 
 $pidgeon_arr = array(
     "id" => $pidgeon->id,
-    "nickname" => $pidgeon->nickname
+    "nickname" => $pidgeon->nickname,
+    "countryOfOrigin" => $pidgeon->countryOfOrigin,
+    "birthyear" => $pidgeon->birthyear,
+    "ringnumber" => $pidgeon->ringnumber,
+    "sex" => $pidgeon->sex
 );
 
 //make it JSON

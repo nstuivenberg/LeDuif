@@ -40,7 +40,11 @@ if($num>0) {
 
         $pidgeon_dbItem = array(
             "id" => $id,
-            "nickname" => $nickname
+            "nickname" => $nickname,
+            "countryOfOrigin" => $countryOfOrigin,
+            "birthyear" => $birthyear,
+            "ringnumber" => $ringnumber,
+            "sex" => $sex
         );
         array_push($products_arr["pidgeons"], $pidgeon_dbItem);
     }
@@ -48,6 +52,6 @@ if($num>0) {
 
 } else {
     echo json_encode(
-        array("message" => "No products found.")
+        array("message" => "No birdies found.")
     );
 }

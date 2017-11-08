@@ -14,6 +14,10 @@ class Pidgeon
     //Object properties
     public $id;
     public $nickname;
+    public $countryOfOrigin;
+    public $birthyear;
+    public $ringnumber;
+    public $sex;
 
     public function __construct($db)
     {
@@ -22,7 +26,7 @@ class Pidgeon
 
     function read() {
         $query = "SELECT
-                p.id, p.nickname
+                p.id, p.nickname, p.countryOfOrigin, p.birthyear, p.ringnumber, p.sex
             FROM
                 " . $this->table_name . " p";
 
@@ -37,15 +41,28 @@ class Pidgeon
     }
 
     function create() {
-        $query = "INSERT INTO " . $this->table_name . " SET nickname=:nickname";
+        $query = "INSERT INTO " . $this->table_name . " 
+        SET nickname=:nickname,
+        countryOfOrigin=:countryOfOrigin,
+        birthyear=:birthyear,
+        ringnumber=:ringnumber,
+        sex=:sex";
 
         $stmt = $this->conn->prepare($query);
 
         //sanitize
-        $this->nickname=htmlspecialchars(strip_tags($this->nickname));
+        $this->nickname = htmlspecialchars(strip_tags($this->nickname));
+        $this->countryOfOrigin = htmlspecialchars(strip_tags($this->countryOfOrigin));
+        $this->birthyear = htmlspecialchars(strip_tags($this->birthyear));
+        $this->ringnumber = htmlspecialchars(strip_tags($this->ringnumber));
+        $this->sex = htmlspecialchars(strip_tags($this->sex));
 
         //bind
         $stmt->bindParam(":nickname", $this->nickname);
+        $stmt->bindParam(":countryOfOrigin", $this->countryOfOrigin);
+        $stmt->bindParam(":birthyear", $this->birthyear);
+        $stmt->bindParam(":ringnumber", $this->ringnumber);
+        $stmt->bindParam(":sex", $this->sex);
 
         if($stmt->execute()) {
             return true;
@@ -57,7 +74,7 @@ class Pidgeon
 
     //Does NOT check if exists, will give ID number via get and a null then
     function readOne() {
-        $query = "SELECT p.id, p.nickname FROM "
+        $query = "SELECT p.id, p.nickname, p.countryOfOrigin, p.birthyear, p.ringnumber, p.sex FROM "
         .$this->table_name. " p WHERE p.id = ? LIMIT 0,1";
 
         $stmt = $this->conn->prepare($query);
@@ -68,6 +85,10 @@ class Pidgeon
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $this->nickname = $row['nickname'];
+        $this->countryOfOrigin = $row['countryOfOrigin'];
+        $this->birthyear = $row['birthyear'];
+        $this->ringnumber = $row['ringnumber'];
+        $this->sex = $row['sex'];
 
     }
 
@@ -75,19 +96,32 @@ class Pidgeon
     function update(){
 
         // update query
-        $query = "UPDATE " . $this->table_name . " SET nickname = :nickname 
+        $query = "UPDATE " . $this->table_name . " 
+        SET nickname = :nickname,
+        countryOfOrigin = :countryOfOrigin,
+        birthyear = :birthyear,
+        ringnumber = :ringnumber,
+        sex = :sex 
         WHERE id = :id";
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);
 
         // sanitize
-        $this->nickname=htmlspecialchars(strip_tags($this->nickname));
         $this->id=htmlspecialchars(strip_tags($this->id));
+        $this->nickname=htmlspecialchars(strip_tags($this->nickname));
+        $this->countryOfOrigin = htmlspecialchars(strip_tags($this->countryOfOrigin));
+        $this->birthyear = htmlspecialchars(strip_tags($this->birthyear));
+        $this->ringnumber = htmlspecialchars(strip_tags($this->ringnumber));
+        $this->sex = htmlspecialchars(strip_tags($this->sex));
 
         // bind new values
-        $stmt->bindParam(':nickname', $this->nickname);
         $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':nickname', $this->nickname);
+        $stmt->bindParam(":countryOfOrigin", $this->countryOfOrigin);
+        $stmt->bindParam(":birthyear", $this->birthyear);
+        $stmt->bindParam(":ringnumber", $this->ringnumber);
+        $stmt->bindParam(":sex", $this->sex);
 
         // execute the query
         if($stmt->execute()){

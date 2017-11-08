@@ -26,9 +26,11 @@ $pidgeon = new Pidgeon($db);
 $data = json_decode(file_get_contents("php://input"));
 
 $pidgeon->id = $data->id;
-
 $pidgeon->nickname = $data->nickname;
-
+$pidgeon->countryOfOrigin = $data->countryOfOrigin;
+$pidgeon->birthyear = $data->birthyear;
+$pidgeon->ringnumber = $data->ringnumber;
+$pidgeon->sex = $data->sex;
 
 
 if($pidgeon->update()){
