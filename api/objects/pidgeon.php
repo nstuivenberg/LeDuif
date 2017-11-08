@@ -73,6 +73,35 @@ class Pidgeon
 
     }
 
+    function update(){
+
+        // update query
+        $query = "UPDATE
+                " . $this->table_name . "
+            SET
+                nickname = :nickname,
+            WHERE
+                id = :id";
+
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+
+        // sanitize
+        $this->nickname=htmlspecialchars(strip_tags($this->nickname));
+        $this->id=htmlspecialchars(strip_tags($this->id));
+
+        // bind new values
+        $stmt->bindParam(':nickname', $this->nickname);
+        $stmt->bindParam(':id', $this->id);
+
+        // execute the query
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
 
 }
