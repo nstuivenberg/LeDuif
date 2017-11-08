@@ -27,7 +27,7 @@ $data = json_decode(file_get_contents("php://input"));
 
 $pidgeon->id = $data->id;
 
-$pidgeon->nickname = $data->name;
+$pidgeon->nickname = $data->nickname;
 
 
 
