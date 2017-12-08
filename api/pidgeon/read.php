@@ -25,7 +25,7 @@ $stmt = $pidgeon->read();
 $num = $stmt->rowCount();
 
 //check if more than one record found
-if($num>0) {
+if( $num > 0 ) {
     $products_arr = array();
     $products_arr["pidgeons"] = array();
 
