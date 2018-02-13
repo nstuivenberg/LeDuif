@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Een duif toevoegen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="insertOrUpdate()">
+
+<!--
+<th>Name</th>
+        <th>Country</th>
+        <th>birthyear</th>
+        <th>Ringnumber</th>
+        sex
+        -->
+
+<div class="formContainer">
+    <div class="messageContainer">
+        <p id="topMessage">Hieronder kun je een nieuwe duif toevoegen</p>
+    </div>
+    <div class="formRowContainer">
+        <div class="formLabel"><label>Naam:</label></div>
+        <div class="formInput"><input type="text" id="pidgeonName"></div>
+    </div>
+    <div class="formRowContainer">
+        <div class="formLabel"><label>Geboortejaar</label></div>
+        <div class="formInput"><input type="number" id="pidgeonBirthyear"></div>
+    </div>
+    <div class="formRowContainer">
+        <div class="formLabel"><label>Land van herkomst</label></div>
+        <div class="formInput"><input type="text" id="pidgeonCountryOfOrigin"></div>
+    </div>
+    <div class="formRowContainer">
+        <div class="formLabel"><label>Ringnummer</label></div>
+        <div class="formInput"><input type="text" id="pidgeonRingNumber"> </div>
+    </div>
+    <div class="formRowContainer">
+        <div class="formLabel"><label>Geslacht</label></div>
+        <div class="formInput">
+            <select id="pidgeonSex">
+               <option value="0">Duivin</option>
+               <option value="1">Doffer</option>
+            </select>
+        </div>
+    </div>
+    <div class="formRowContainer" id="bottomRowContainer">
+        <div class="formSubmit">
+            <button onclick="submitForm()">Voeg toe</button>
+        </div>
+    </div>
+</div>
+
+<script src="addPidgeon.js"></script>
+<script src="/web/js/request.js"></script>
+<script src="/web/js/ajax.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+.formContainer {
+    max-height:100%;
+    margin:0 auto;
+    width:80vw
+}
+
+.formRowContainer {
+    max-height: 14%;
+    margin-top:1%;
+}
+
+#bottomRowContainer {
+    margin-top:5%;
+}
+
+
+.messageContainer {
+    max-height: 14%;
+    text-align:center;
+    font-size:3vh;
+    border:1px solid darkgrey;
+    background-color:lightgrey;
+    color:darkgrey;
+}
+
+#messageError {
+    border:1px solid red;
+    background-color:#DB5650;
+    color:darkred;
+}
+
+#messageSucceed {
+    border:1px solid darkgreen;
+    background-color:lightgreen;
+    color:darkgreen;
+}
+
+.formLabel {
+    font-size: 3.0vh;
+    text-align:center;
+}
+
+.formInput {
+    text-align: center;
+}
+.formInput input, .formInput select {
+    height:6vh;
+    width:100%;
+    font-size:4vh;
+    text-align-last:center;
+}
+.formSubmit {
+    text-align:center;
+    height:5vw;
+}
+.formSubmit button {
+    height:100%;
+    width:100%;
+    font-size:100%;
+}
