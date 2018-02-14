@@ -3,14 +3,6 @@ TODO
 Validate form. Needs to validate with data gotten from back-end. Without server request?
 Able to receive error from back end.
  */
-/*{
-        "nickname": "Lola",
-        "countryOfOrigin": "NL",
-        "birthyear": 2009,
-        "ringnumber": 4122925,
-        "sex": 1
-    }
-    */
 
 function insertOrUpdate() {
     if(!isInsert()) {
@@ -32,10 +24,9 @@ function submitForm() {
         birthyear:birthyear, ringnumber:ringnumber, sex:sex};
 
     if(validateForm(pidgeonToAdd) && isInsert()) {
-        sendPidgeon(pidgeonToAdd);
+        sendAjaxPidgeon(pidgeonToAdd, processSendPidgeon);
     } else if(validateForm(pidgeonToAdd) && !isInsert()) {
         pidgeonToAdd.id = getQueryVariable("pid");
-        console.log(pidgeonToAdd);
     }
 }
 
@@ -44,31 +35,6 @@ function validateForm(pidgeonToValidate) {
     let isValidated = true;
     //TODO : Add validation
     return isValidated;
-}
-
-//TODO should become obsolete
-function sendPidgeon(pidgeonJSON) {
-
-    sendAjaxPidgeon(pidgeonJSON, processSendPidgeon);
-    /*
-    // Sending and receiving data in JSON format using POST method
-    let xhr = new XMLHttpRequest();
-    let url = "/api/pidgeon/create.php";
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            if(xhr.response === "{\"message\": \"Pidgeon was created\"}") {
-
-                let message = "Duif met ringnummer: " + pidgeonJSON.ringnumber + " is succevol toegevoerd. Je kunt hieronder nog een duif toevoegen";
-                changeIdOfClassAndAddMessage("messageContainer", "messageSucceed", message);
-                emptyForm();
-            }
-        }
-    };
-    let data = JSON.stringify(pidgeonJSON);
-    xhr.send(data);
-    */
 }
 
 function getAPidgeon(pidgeonID) {
