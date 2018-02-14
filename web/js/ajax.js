@@ -22,11 +22,26 @@ function getOnePidgeonAjaxCall(pidgeonId, callback) {
     console.log("request sent successfully");
 }
 
-//TODO  continue below.
 function sendAjaxPidgeon(pidgeonJSON, callback) {
     let url = "/api/pidgeon/create.php";
     let methodType = "POST";
 
+    let xhr = new XMLHttpRequest();
+    xhr.open(methodType, url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let response = xhr.response;
+            callback(response);
+        }
+    };
+    let data = JSON.stringify(pidgeonJSON);
+    xhr.send(data);
+}
+
+function updateAjaxPidgeon(pidgeonJSON, callback) {
+    let url = "/api/pidgeon/update.php";
+    let methodType = "POST";
     let xhr = new XMLHttpRequest();
     xhr.open(methodType, url, true);
     xhr.setRequestHeader("Content-type", "application/json");

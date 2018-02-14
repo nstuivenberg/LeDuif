@@ -8,8 +8,9 @@ function insertOrUpdate() {
     if(!isInsert()) {
         let urlID = getQueryVariable("pid");
         console.log("URLID " + urlID);
-        let pidgeonToUpdate = getAPidgeon(urlID);
-        console.log("Le pidgeon: " + pidgeonToUpdate);
+        //let pidgeonToUpdate = getAPidgeon(urlID);
+        getOnePidgeonAjaxCall(urlID, processPidgeonDataOnUpdate)
+        //console.log("Le pidgeon: " + pidgeonToUpdate);
     }
 }
 
@@ -26,19 +27,22 @@ function submitForm() {
     if(validateForm(pidgeonToAdd) && isInsert()) {
         sendAjaxPidgeon(pidgeonToAdd, processSendPidgeon);
     } else if(validateForm(pidgeonToAdd) && !isInsert()) {
-        pidgeonToAdd.id = getQueryVariable("pid");
+        pidgeonToAdd["id"] = getQueryVariable("pid");
+        updateAjaxPidgeon(pidgeonToAdd, processUpdatePidgeon);
     }
 }
 
+/**
+ * PLACEHOLDER CODE
+ * This function will validate the form before submitting it, in the future
+ * @param {Pidgeon} pidgeonToValidate
+ * @returns {boolean}
+ */
 function validateForm(pidgeonToValidate) {
     let pidgeonObject = pidgeonToValidate;
     let isValidated = true;
     //TODO : Add validation
     return isValidated;
-}
-
-function getAPidgeon(pidgeonID) {
-    console.log("pidgey " + getOnePidgeonAjaxCall(pidgeonID, processPidgeonDataOnUpdate));
 }
 
 function processPidgeonDataOnUpdate(pidgeonData) {
@@ -50,13 +54,20 @@ function processPidgeonDataOnUpdate(pidgeonData) {
     document.getElementById("pidgeonSex").value = pidgeonData.sex;
 }
 
-function processSendPidgeon(processedPidgeon) {
-    console.log("processedpidgeon: " + processedPidgeon);
-    if(processedPidgeon === "{\"message\": \"Pidgeon was created\"}") {
+function processSendPidgeon(processedPidgeonMessage) {
+    console.log("processedpidgeon: " + processedPidgeonMessage);
+    if(processedPidgeonMessage === "{\"message\": \"Pidgeon was created\"}") {
         //let message = "Duif met ringnummer: " + pidgeonJSON.ringnumber + " is succevol toegevoerd. Je kunt hieronder nog een duif toevoegen";
-        let message = "seccuss";
+        let message = "Success";
         changeIdOfClassAndAddMessage("messageContainer", "messageSucceed", message);
         emptyForm();
+    }
+}
+
+function processUpdatePidgeon(updatedPidgeonMessage) {
+    if(updatedPidgeonMessage === "{\"message\": \"Pidgeon was updated.\"}") {
+        let message = "Succesvol geupdate";
+        changeIdOfClassAndAddMessage("messageContainer", "messageSucceed", message);
     }
 }
 
@@ -81,9 +92,7 @@ function isInsert() {
         return true;
     }
     return false;
-
 }
-
 
 function getQueryVariable(variable) {
     let query = window.location.search.substring(1);
