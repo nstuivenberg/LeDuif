@@ -2,6 +2,12 @@
 TODO
 Validate form. Needs to validate with data gotten from back-end. Without server request?
 Able to receive error from back end.
+Different messages and button/links when inserting or updating
+TOCONT
+ # Add field for daddy and mommy
+ # Let user insert pidgeon ringnumber
+ # Let user click on autofill field with available numbers
+ # Write the php to do this stuff.
  */
 
 function insertOrUpdate() {
