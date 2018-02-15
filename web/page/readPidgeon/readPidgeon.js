@@ -13,24 +13,67 @@ function processAllPidgeons(receivedPidgeons) {
     table.className += "tableDiv";
 
     //TODO: Add heading
+    table.appendChild(buildTableHeading());
     
     //TODO: Add rows
+    for (let i = 0; i < arrayOfPidgeons.length; i++) {
+        table.appendChild(buildTableRow(arrayOfPidgeons[i]));
+    }
+
+    document.getElementById("tableHolder").appendChild(table);
+
 }
 
 function buildTableHeading() {
     let tableHeading = document.createElement("div");
     tableHeading.className += "tableHeading";
+
+    let a = arrayOfPidgeons[0];
+
+    Object.keys(a).forEach(function (key) {
+        tableHeading.appendChild(buildTableCell(key));
+    });
+
+    return tableHeading;
 }
 
-function getAmountOfProperties() {
-    let amountOfCells = 0;
+function buildTableRow(aPidgeon) {
 
-    for (let c = 0; c < arrayOfPidgeons.length; c++) {
-        let amountofProps = Object.keys(arrayOfPidgeons[c]).length;
+    let tableRow = document.createElement("div");
+    tableRow.className += "tableRow";
 
-        if(amountofProps > amountOfCells) {
-            amountOfCells = amountofProps;
-        }
+    for (let prop in aPidgeon) {
+        tableRow.appendChild(buildTableCell(aPidgeon[prop]));
     }
-    return amountOfCells;
+
+    if (aPidgeon.hasOwnProperty("id")) {
+        tableRow.setAttribute("onclick", "redirectToPidgeon(" + aPidgeon["id"] + ")");
+    }
+
+    return tableRow;
+}
+
+function buildTableCell(text) {
+
+    let leText = "";
+    if(text !== "" || text != null || typeof(text) != 'undefined') {
+        leText = text;
+    }
+
+    let tableCell = document.createElement("div");
+    tableCell.className += "tableCell";
+    let tableCellText = document.createElement("p");
+    tableCellText.innerHTML = leText;
+
+    tableCell.appendChild(tableCellText);
+
+    return tableCell;
+}
+
+function redirectToPidgeon(id) {
+    location.href = "../createPidgeon/create.html?pid=" + id;
+}
+
+function addNewPidgeon() {
+    location.href = "../createPidgeon/create.html";
 }
