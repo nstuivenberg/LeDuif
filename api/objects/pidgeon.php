@@ -91,6 +91,64 @@ class Pidgeon
         $this->sex = $row['sex'];
 
     }
+    //Does NOT check if exists, will give object with property values on null. See difference with readOne()
+    function readRingnumber() {
+        $query = "SELECT p.id, p.nickname, p.countryOfOrigin, p.birthyear, p.ringnumber, p.sex FROM "
+            .$this->table_name. " p WHERE p.ringnumber = ? LIMIT 0,1";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(1, $this->ringnumber);
+
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $this->id = $row['id'];
+        $this->nickname = $row['nickname'];
+        $this->countryOfOrigin = $row['countryOfOrigin'];
+        $this->birthyear = $row['birthyear'];
+        $this->ringnumber = $row['ringnumber'];
+        $this->sex = $row['sex'];
+    }
+
+    function readRingnumberHen() {
+        $query = "SELECT p.id, p.nickname, p.countryOfOrigin, p.birthyear, p.ringnumber, p.sex FROM "
+            .$this->table_name. " p WHERE p.ringnumber = ? AND p.sex = '0' LIMIT 0,1";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(1, $this->ringnumber);
+
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $this->id = $row['id'];
+        $this->nickname = $row['nickname'];
+        $this->countryOfOrigin = $row['countryOfOrigin'];
+        $this->birthyear = $row['birthyear'];
+        $this->ringnumber = $row['ringnumber'];
+        $this->sex = $row['sex'];
+    }
+
+    function readRingnumberCock() {
+        $query = "SELECT p.id, p.nickname, p.countryOfOrigin, p.birthyear, p.ringnumber, p.sex FROM "
+            .$this->table_name. " p WHERE p.ringnumber = ? AND p.sex = '1' LIMIT 0,1";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(1, $this->ringnumber);
+
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $this->id = $row['id'];
+        $this->nickname = $row['nickname'];
+        $this->countryOfOrigin = $row['countryOfOrigin'];
+        $this->birthyear = $row['birthyear'];
+        $this->ringnumber = $row['ringnumber'];
+        $this->sex = $row['sex'];
+    }
+
 
     // Currently updates by sending an object with ID to the server.
     function update(){

@@ -7,7 +7,10 @@ TOCONT
  # Add field for daddy and mommy
  # Let user insert pidgeon ringnumber
  # Let user click on autofill field with available numbers
- # Write the php to do this stuff.
+ # Write the php work with it in the database
+
+ TODECIDE
+ Should the script load all pidgeons on pageload or should it query the DB?
  */
 
 function insertOrUpdate() {
