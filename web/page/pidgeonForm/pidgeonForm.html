@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Duifbeheer</title>
+    <link rel="stylesheet" href="../../css/mainStyle.css">
+</head>
+<body onload="formLoader()">
+<div class="top">
+    MENU
+</div>
+<div class="main">
+
+    <div class="formContainer">
+        <div class="messageContainer">
+            <p id="topMessage">Hieronder kun je een nieuwe duif toevoegen</p>
+        </div>
+        <div class="formRowContainer">
+            <div class="formLabel"><label>Ringnummer *</label></div>
+            <div class="formInput"><input type="text" id="pidgeonRingNumber"> </div>
+        </div>
+        <div class="formRowContainer">
+            <div class="formLabel"><label>Geboortejaar *</label></div>
+            <div class="formInput"><input type="number" id="pidgeonBirthyear"></div>
+        </div>
+        <div class="formRowContainer">
+            <div class="formLabel"><label>Land van herkomst *</label></div>
+            <div class="formInput"><input type="text" id="pidgeonCountryOfOrigin"></div>
+        </div>
+        <div class="formRowContainer">
+            <div class="formLabel"><label>Naam</label></div>
+            <div class="formInput"><input type="text" id="pidgeonName"></div>
+        </div>
+        <div class="formRowContainer">
+            <div class="formLabel"><label>Geslacht * </label></div>
+            <div class="formInput">
+                <select id="pidgeonSex">
+                    <option value="0">Duivin</option>
+                    <option value="1">Doffer</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="formRowContainer funnyshit">
+            <div class="formRowHalf">
+                <div class="formLabel"><label>Vader <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjAwJyBoZWlnaHQ9JzIwMCcgZmlsbD0iIzUxQTdGOSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHg9IjBweCIgeT0iMHB4Ij48dGl0bGU+MjE2LU1hbGU8L3RpdGxlPjxnIGRhdGEtbmFtZT0iMjE2LU1hbGUiPjxwYXRoIGQ9Ik0zMSwwSDE2VjJIMjguNTlMMTgsMTIuNTVBMTEsMTEsMCwxLDAsMTkuNDUsMTRMMzAsMy40MVYxNGgyVjFBMSwxLDAsMCwwLDMxLDBaTTIwLDIxYTksOSwwLDEsMS05LTlBOSw5LDAsMCwxLDIwLDIxWiI+PC9wYXRoPjwvZz48L3N2Zz4="
+                                                         class="male"></label></div>
+                <div class="formInput">
+
+                    <input type="text" id="pidgeonDad" list="malePidgeons">
+                    <datalist id="malePidgeons">
+                        <option value="">
+                    </datalist>
+
+                </div>
+            </div>
+            <div class="formRowHalf">
+                <div class="formLabel"><label>Moeder <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjAwJyBoZWlnaHQ9JzIwMCcgZmlsbD0iI0VDNUQ1NyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHg9IjBweCIgeT0iMHB4Ij48dGl0bGU+MjE3LUZlbWFsZTwvdGl0bGU+PGcgZGF0YS1uYW1lPSIyMTctRmVtYWxlIj48cGF0aCBkPSJNMjcsMTFBMTEsMTEsMCwxLDAsMTUsMjEuOTVWMjZIMTF2Mmg0djRoMlYyOGg0VjI2SDE3VjIxLjk1QTExLDExLDAsMCwwLDI3LDExWk0xNiwyMGE5LDksMCwxLDEsOS05QTksOSwwLDAsMSwxNiwyMFoiPjwvcGF0aD48L2c+PC9zdmc+"
+                class="male"></label></div>
+                <div class="formInput"><input type="text" id="pidgeonMom"></div>
+            </div>
+        </div>
+
+        <div class="formRowContainer" id="bottomRowContainer">
+            <div class="formSubmit">
+                <button onclick="submitForm()">Voeg toe</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="bottom">
+
+</div>
+
+<script src="pidgeonForm.js"></script>
+<script src="/web/js/ajax.js"></script>
+</body>
+</html>
